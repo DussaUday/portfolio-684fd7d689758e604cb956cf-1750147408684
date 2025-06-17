@@ -1,0 +1,316 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>ker</title>
+        </head>
+        <body class="light">
+          <div><style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+  :root {
+    --primary: #3B82F6;
+    --accent: #10B981;
+    --secondary: #6B7280;
+    --highlight: #F59E0B;
+    --dark: #1F2937;
+    --white: #FFFFFF;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-800: #1F2937;
+    --red-400: #F87171;
+    --red-500: #EF4444;
+    --header-height: 70px;
+    --transition-speed: 0.3s;
+    --neumorph-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.5);
+    --neumorph-shadow-dark: 8px 8px 16px rgba(0, 0, 0, 0.3), -8px -8px 16px rgba(255, 255, 255, 0.05);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed), transform var(--transition-speed);
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--gray-100), #E5E7EB);
+    color: var(--gray-800);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body.dark {
+    background: linear-gradient(135deg, var(--gray-800), #2D3748);
+    color: var(--white);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--neumorph-shadow);
+  }
+
+  .header-scrolled {
+    height: 60px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    height: 100%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    position: relative;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .nav-link {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+    padding: 8px 12px;
+    transition: color var(--transition-speed);
+  }
+
+  .nav-link:hover, .nav-link.active {
+    color: var(--highlight);
+  }
+
+  .nav-link.active:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 50%;
+    height: 3px;
+    background: var(--highlight);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    background: rgba(31, 41, 55, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    transform: translateX(-100%);
+    opacity: 0;
+    z-index: 999;
+    padding: 20px;
+    transition: transform var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-speed) ease-in-out;
+  }
+
+  .mobile-menu-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .theme-button {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+  }
+
+  .theme-button:hover {
+    background: var(--highlight);
+    transform: scale(1.1);
+  }
+
+  .section {
+    padding: 96px 0;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--neumorph-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  }
+
+  .dark .card {
+    background: var(--gray-800);
+    box-shadow: var(--neumorph-shadow-dark);
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+  }
+
+  .profile-image:hover {
+    transform: scale(1.1);
+  }
+
+  .project-image, .certificate-image {
+    width: 100%;
+    height: 192px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    transition: transform var(--transition-speed);
+  }
+
+  .certificate-image {
+    object-fit: contain;
+    background: var(--gray-100);
+  }
+
+  .dark .certificate-image {
+    background: var(--gray-800);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+  }
+
+  .button:hover {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--secondary);
+    transition: all var(--transition-speed);
+  }
+
+  .social-icon:hover {
+    color: var(--highlight);
+    transform: scale(1.2);
+  }
+
+  footer {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: var(--white);
+    padding: 48px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .section { padding: 64px 0; }
+    .profile-image { width: 120px; height: 120px; }
+    .project-image, .certificate-image { height: 160px; }
+    .nav-link { font-size: 1rem; }
+    .logo { font-size: 1.25rem; }
+  }
+
+  .grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  [data-animate-stagger] > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: stagger 0.5s ease-out forwards;
+  }
+
+  [data-animate-stagger] > *:nth-child(1) { animation-delay: 0.1s; }
+  [data-animate-stagger] > *:nth-child(2) { animation-delay: 0.2s; }
+  [data-animate-stagger] > *:nth-child(3) { animation-delay: 0.3s; }
+  [data-animate-stagger] > *:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes stagger {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style><header class=""><nav class="container"><h1 class="logo">ker</h1><div class="md:flex items-center space-x-6 hidden"><a href="#profile" class="nav-link active">Home</a><a href="#skills" class="nav-link ">Skills</a><a href="#projects" class="nav-link ">Projects</a><a href="#certificates" class="nav-link ">Certificates</a><a href="#resume" class="nav-link ">Resume</a><a href="#contact" class="nav-link ">Contact</a><button class="theme-button" aria-label="Toggle theme"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="w-6 h-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg></button></div><button class="md:hidden text-2xl focus:outline-none" aria-label="Toggle menu"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></button></nav><div class="mobile-menu "><div class="flex flex-col items-center py-4 space-y-4"><a href="#profile" class="nav-link active">Home</a><a href="#skills" class="nav-link ">Skills</a><a href="#projects" class="nav-link ">Projects</a><a href="#certificates" class="nav-link ">Certificates</a><a href="#resume" class="nav-link ">Resume</a><a href="#contact" class="nav-link ">Contact</a><button class="theme-button" aria-label="Toggle theme"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="w-6 h-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg></button></div></div><div class="mobile-menu-backdrop "></div></header><main class="container"><section id="profile" class="section"><div class="card fade-in"><h2 class="text-4xl font-extrabold mb-8 text-center">About Me</h2><div class="flex flex-col md:flex-row items-center gap-8"><div class="text-center md:text-left"><h3 class="text-3xl font-bold mb-4">ker</h3><p class="text-lg mb-4">helo</p><p class="text-lg"><span class="font-semibold">Email:</span> <a href="mailto:dussauday469@gmail.com" class="text-primary hover:text-highlight">dussauday469@gmail.com</a> <!-- -->| <span class="font-semibold">GitHub:</span> <a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-highlight">portfolio-684fd7d689758e604cb956cf-1750142455983</a> <!-- -->| <span class="font-semibold">LinkedIn:</span> <a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-highlight">portfolio-684fd7d689758e604cb956cf-1750142455983</a></p></div></div></div></section><section id="skills" class="section"><div class="card"><h2 class="text-4xl font-extrabold mb-8 text-center">Skills</h2><div class="grid" data-animate-stagger="true"><div class="flex items-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700"><div class="w-8 h-8 mr-4"></div> <h3 class="text-lg font-semibold">🗣️ Natural Language Processing (NLP)</h3></div><div class="flex items-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700"><div class="w-8 h-8 mr-4"></div> <h3 class="text-lg font-semibold">🔊 Speech Recognition</h3></div><div class="flex items-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700"><div class="w-8 h-8 mr-4"></div> <h3 class="text-lg font-semibold">👁️ Computer Vision</h3></div></div></div></section><section id="projects" class="section"><div class="card"><h2 class="text-4xl font-extrabold mb-8 text-center">Projects</h2><div class="grid" data-animate-stagger="true"><div class="card overflow-hidden"><img alt="hello" class="project-image"/><div class="p-6"><h3 class="text-2xl font-semibold mb-3">hello</h3><p class="mb-4">helo</p><div class="flex gap-4"><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" class="button">View Project</a><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" class="button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" class="mr-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg> GitHub</a></div></div></div></div></div></section><section id="certificates" class="section"><div class="card"><h2 class="text-4xl font-extrabold mb-8 text-center">Certificates</h2><div class="grid" data-animate-stagger="true"><div class="card overflow-hidden"><img alt="hello" class="certificate-image"/><div class="p-6"><h3 class="text-2xl font-semibold mb-3">hello</h3><p>Date: <!-- -->6/7/2025</p><p class="mt-2">Credential: <a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-highlight">View</a></p></div></div></div></div></section><section id="resume" class="section"><div class="card text-center"><h2 class="text-4xl font-extrabold mb-8">Resume</h2><a href="/resume.pdf" download="" class="button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="mr-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg> Download Resume</a><p class="mt-4">For a complete resume view, please download it.</p></div></section><section id="contact" class="section"><div class="card text-center"><h2 class="text-4xl font-extrabold mb-8">Contact Me</h2><div class="flex justify-center gap-8 mb-6"><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></a><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a><a href="mailto:dussauday469@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg></a><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a></div><p>Feel free to reach out for opportunities or collaborations!</p></div></section></main><footer><div class="container"><h3 class="text-2xl font-bold mb-6">Connect with Me</h3><div class="flex justify-center gap-8 mb-6"><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></a><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a><a href="mailto:dussauday469@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg></a><a href="https://github.com/DussaUday/portfolio-684fd7d689758e604cb956cf-1750142455983" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="social-icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a></div><p>© <!-- -->2025<!-- --> <!-- -->ker<!-- -->. All rights reserved.</p></div></footer></div>
+        </body>
+        </html>
+      
